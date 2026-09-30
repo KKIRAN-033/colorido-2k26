@@ -20,7 +20,7 @@ async def lifespan(app: FastAPI):
     """Application lifespan: initialize DB and seed admin on startup."""
     db = get_database()
     
-    # Create default admin if DB is connected
+    # Create default admin and seed initial data if DB is empty
     if is_connected():
         try:
             if not db.admins.find_one({"email": settings.ADMIN_DEFAULT_EMAIL}):
@@ -32,8 +32,22 @@ async def lifespan(app: FastAPI):
                     "created_at": __import__("datetime").datetime.now(__import__("datetime").timezone.utc)
                 })
                 print(f"[OK] Default admin created: {settings.ADMIN_DEFAULT_EMAIL}")
+            
+            # Ensure 16 events exist
+            if db.events.count_documents({}) == 0:
+                from seed.initial_data import (
+                    seed_events, seed_schedules, seed_announcements,
+                    seed_results, seed_gallery, seed_sponsors
+                )
+                seed_events(db)
+                seed_schedules(db)
+                seed_announcements(db)
+                seed_results(db)
+                seed_gallery(db)
+                seed_sponsors(db)
+                print("[OK] Auto-seeded initial events & content into database")
         except Exception as e:
-            print(f"[WARN] Could not seed admin: {e}")
+            print(f"[WARN] Startup seed warning: {e}")
     
     print("[OK] COLORIDO 2K26 Backend is ready!")
     yield
