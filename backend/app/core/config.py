@@ -5,7 +5,10 @@ load_dotenv()
 
 
 class Settings:
-    MONGODB_URI: str = os.getenv("MONGODB_URI", "mongodb://localhost:27017")
+    MONGODB_URI: str = os.getenv(
+        "MONGODB_URI",
+        "mongodb+srv://kirankatakam45_db_user:Kiran123@cluster0.huo4afk.mongodb.net/?appName=Cluster0"
+    )
     DATABASE_NAME: str = os.getenv("DATABASE_NAME", "colorido_2k26")
     JWT_SECRET: str = os.getenv("JWT_SECRET", "dev-secret-change-in-production")
     JWT_ALGORITHM: str = os.getenv("JWT_ALGORITHM", "HS256")
@@ -15,7 +18,10 @@ class Settings:
     CLOUDINARY_API_SECRET: str = os.getenv("CLOUDINARY_API_SECRET", "").strip()
     CORS_ORIGINS: list = [
         origin.strip() 
-        for origin in os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173,http://localhost:3000").split(",") 
+        for origin in os.getenv(
+            "CORS_ORIGINS",
+            "*,http://localhost:5173,http://localhost:4173,http://127.0.0.1:5173,https://colorido-2k26.vercel.app"
+        ).split(",") 
         if origin.strip()
     ]
     ADMIN_DEFAULT_EMAIL: str = os.getenv("ADMIN_DEFAULT_EMAIL", "admin@colorido.in")

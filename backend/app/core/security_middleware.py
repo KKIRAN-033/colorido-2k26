@@ -44,7 +44,18 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
             if cleaned and cleaned not in allowed_hosts:
                 allowed_hosts.append(cleaned)
 
-        if host and host not in allowed_hosts and not host.endswith(".colorido.in"):
+        is_allowed_host = (
+            not host
+            or host in allowed_hosts
+            or host.endswith(".colorido.in")
+            or host.endswith(".onrender.com")
+            or host.endswith(".render.com")
+            or host.endswith(".vercel.app")
+            or "*" in allowed_hosts
+            or "*" in settings.CORS_ORIGINS
+        )
+
+        if not is_allowed_host:
             return JSONResponse(
                 status_code=400,
                 content={"success": False, "message": "Invalid Host header."}

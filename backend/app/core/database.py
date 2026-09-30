@@ -6,6 +6,7 @@ from app.core.config import settings
 _client: MongoClient | None = None
 _db: Database | None = None
 _connected: bool = False
+_db_type: str = "disconnected"
 
 
 def get_database() -> Database:
@@ -13,19 +14,21 @@ def get_database() -> Database:
     Falls back gracefully to an in-memory mongomock database with auto-seed
     if real MongoDB is not reachable.
     """
-    global _client, _db, _connected
+    global _client, _db, _connected, _db_type
     if _db is None:
         try:
+            print(f"[INFO] Connecting to MongoDB: {settings.MONGODB_URI[:30]}...")
             _client = MongoClient(
                 settings.MONGODB_URI,
-                serverSelectionTimeoutMS=1500,
-                connectTimeoutMS=1500,
+                serverSelectionTimeoutMS=10000,
+                connectTimeoutMS=10000,
             )
             _client.admin.command("ping")
             _db = _client[settings.DATABASE_NAME]
             _connected = True
+            _db_type = "mongodb_atlas"
             _create_indexes(_db)
-            print("[OK] MongoDB connected successfully to real MongoDB instance")
+            print("[OK] MongoDB connected successfully to real MongoDB instance (MongoDB Atlas)")
         except (ServerSelectionTimeoutError, ConnectionFailure, Exception) as e:
             print(f"[WARN] Real MongoDB not available: {e}")
             print("[INFO] Initializing In-Memory Mock MongoDB with full COLORIDO 2K26 dataset...")
@@ -34,6 +37,7 @@ def get_database() -> Database:
                 _client = mongomock.MongoClient()
                 _db = _client[settings.DATABASE_NAME]
                 _connected = True
+                _db_type = "in_memory_mock"
                 _create_indexes(_db)
                 # Auto-seed the database
                 try:
@@ -56,6 +60,7 @@ def get_database() -> Database:
                     print(f"[WARN] Auto-seeding mock DB warning: {seed_err}")
             except Exception as mock_err:
                 _connected = False
+                _db_type = "error"
                 print(f"[ERROR] Failed to initialize mongomock: {mock_err}")
     return _db
 
@@ -63,6 +68,11 @@ def get_database() -> Database:
 def is_connected() -> bool:
     """Check if we have an active DB connection."""
     return _connected
+
+
+def get_db_type() -> str:
+    """Return 'mongodb_atlas' or 'in_memory_mock'."""
+    return _db_type
 
 
 def close_database():

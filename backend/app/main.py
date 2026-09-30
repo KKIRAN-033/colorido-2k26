@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import logging
 from app.core.config import settings
-from app.core.database import get_database, close_database, is_connected
+from app.core.database import get_database, close_database, is_connected, get_db_type
 from app.core.security import hash_password
 from app.routes import events, registrations, schedule, announcements, results, gallery, sponsors, contact, auth, admin
 
@@ -114,6 +114,7 @@ async def root():
         "version": "1.0.0",
         "status": "running",
         "database": "connected" if is_connected() else "disconnected",
+        "database_type": get_db_type(),
         "docs": "/docs"
     }
 
@@ -124,5 +125,6 @@ async def health():
     connected = is_connected()
     return {
         "status": "ok" if connected else "degraded",
-        "database": "connected" if connected else "disconnected"
+        "database": "connected" if connected else "disconnected",
+        "database_type": get_db_type(),
     }
