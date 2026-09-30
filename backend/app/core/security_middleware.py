@@ -44,7 +44,7 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
             if cleaned and cleaned not in allowed_hosts:
                 allowed_hosts.append(cleaned)
 
-        if host and host not in allowed_hosts and not host.endswith(".colorido.in"):
+        if host and host not in allowed_hosts and not host.endswith(".colorido.in") and not host.endswith(".onrender.com") and "*" not in allowed_hosts:
             return JSONResponse(
                 status_code=400,
                 content={"success": False, "message": "Invalid Host header."}
