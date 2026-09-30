@@ -1,0 +1,256 @@
+/* EVENT HIGHLIGHT PORTAL — CINEMATIC MODAL OVERLAY */
+.event-highlight-portal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #030712;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  animation: portalFadeIn 0.35s ease forwards;
+}
+
+@keyframes portalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.portal-anamorphic-letterbox-top,
+.portal-anamorphic-letterbox-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 9vh;
+  background: #000000;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.portal-anamorphic-letterbox-top {
+  top: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.portal-anamorphic-letterbox-bottom {
+  bottom: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.portal-cinematic-stage {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.portal-ambient-glow {
+  position: absolute;
+  width: 700px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.55;
+  pointer-events: none;
+  animation: glowPulse 2s infinite alternate;
+}
+
+@keyframes glowPulse {
+  0% { transform: scale(0.9); opacity: 0.4; }
+  100% { transform: scale(1.15); opacity: 0.7; }
+}
+
+/* PORTAL HERO CONTAINER */
+.portal-hero-container {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(236, 72, 153, 0.25);
+  border-radius: 2rem;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  backdrop-filter: blur(24px);
+  position: relative;
+  z-index: 20;
+  max-width: 650px;
+  width: 100%;
+}
+
+.portal-hero-badge {
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.portal-hero-title {
+  font-family: var(--ff-heading, sans-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 0.4rem;
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+}
+
+.portal-hero-subtitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.25rem;
+}
+
+.portal-hero-quote {
+  font-style: italic;
+  color: #cbd5e1;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 auto 2rem auto;
+  max-width: 520px;
+}
+
+/* TIMER & ACTION */
+.portal-footer-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.portal-timer-bar {
+  width: 100%;
+  max-width: 320px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.portal-timer-progress {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #ec4899, #38bdf8, #fbbf24);
+  animation: timerCountdown 1.7s linear forwards;
+}
+
+@keyframes timerCountdown {
+  0% { transform: scaleX(0); transform-origin: left; }
+  100% { transform: scaleX(1); transform-origin: left; }
+}
+
+.portal-skip-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  padding: 0.65rem 1.6rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+}
+
+.portal-skip-btn:hover {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ── EVENT-SPECIFIC SIGNATURE FX ───────────────────────────── */
+
+/* 1. GAMMA SMASH (Hulk) */
+.gamma-smash-fx .gamma-shockwave-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 4px solid #22c55e;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+.gamma-smash-fx .ring-1 {
+  width: 300px;
+  height: 300px;
+  animation: gammaRumble 0.8s ease-out infinite;
+}
+.gamma-smash-fx .ring-2 {
+  width: 500px;
+  height: 500px;
+  animation: gammaRumble 0.8s 0.2s ease-out infinite;
+}
+@keyframes gammaRumble {
+  0% { transform: translate(-50%, -50%) scale(0.2); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(2.2); opacity: 0; }
+}
+.gamma-smash-fx .gamma-screen-flash {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.35) 0%, transparent 80%);
+  animation: gammaFlash 0.6s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes gammaFlash {
+  0% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+/* 2. THOR LIGHTNING */
+.thor-lightning-fx .thor-flash-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(56, 189, 248, 0.25);
+  animation: thorFlicker 0.4s ease-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes thorFlicker {
+  0% { opacity: 0.1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 0.2; }
+}
+
+/* 3. SPIDER-MAN WEB */
+.spidey-web-fx .spidey-full-web-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.6);
+  opacity: 0.35;
+  animation: webSpin 3s linear infinite;
+  pointer-events: none;
+}
+@keyframes webSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg) scale(1.6); }
+  to { transform: translate(-50%, -50%) rotate(360deg) scale(1.6); }
+}
+
+/* 4. STRANGE MANDALA */
+.strange-mandala-fx .mandala-outer-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 480px;
+  height: 480px;
+  transform: translate(-50%, -50%);
+  border: 3px dashed #f59e0b;
+  border-radius: 50%;
+  box-shadow: 0 0 40px #f59e0b;
+  animation: mandalaSpin 4s linear infinite;
+  pointer-events: none;
+}
+@keyframes mandalaSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}

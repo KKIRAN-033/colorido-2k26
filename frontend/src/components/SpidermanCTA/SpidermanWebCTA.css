@@ -1,0 +1,277 @@
+/* ═══════════════════════════════════════════════════════════
+   SIGNATURE CTA — PREMIUM ANIMATED BUTTON SYSTEM
+   ═══════════════════════════════════════════════════════════ */
+
+.spiderman-cta-container {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+
+.spiderman-cta-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: var(--ff-heading);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  overflow: hidden;
+  z-index: 5;
+  transition: all 0.35s var(--ease-out);
+}
+
+.spiderman-cta-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.spiderman-cta-button:hover::before {
+  opacity: 1;
+}
+
+/* Sizes */
+.spiderman-cta-button.xs {
+  padding: 0.35rem 0.85rem;
+  font-size: 0.75rem;
+  gap: 0.4rem;
+}
+
+.spiderman-cta-button.sm {
+  padding: 0.5rem 1.15rem;
+  font-size: 0.78rem;
+}
+
+.spiderman-cta-button.md {
+  padding: 0.7rem 1.6rem;
+  font-size: 0.88rem;
+}
+
+.spiderman-cta-button.lg {
+  padding: 0.85rem 2.2rem;
+  font-size: 1rem;
+}
+
+/* Full width */
+.spiderman-cta-container.full-width {
+  display: flex;
+  width: 100%;
+}
+
+.spiderman-cta-container.full-width .spiderman-cta-button {
+  width: 100%;
+}
+
+/* Themes */
+.spiderman-cta-button.primary {
+  background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-dark) 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(233, 69, 96, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spiderman-cta-button.primary::before {
+  background: linear-gradient(135deg, var(--clr-primary-light), var(--clr-primary));
+}
+
+.spiderman-cta-button.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(233, 69, 96, 0.45);
+}
+
+.spiderman-cta-button.secondary {
+  background: rgba(30, 41, 59, 0.65);
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.spiderman-cta-button.secondary::before {
+  background: rgba(233, 69, 96, 0.15);
+}
+
+.spiderman-cta-button.secondary:hover {
+  transform: translateY(-2px);
+  border-color: var(--clr-primary);
+  box-shadow: 0 6px 22px rgba(233, 69, 96, 0.3);
+}
+
+.spiderman-cta-button.ghost {
+  background: transparent;
+  color: var(--clr-text-secondary, #94a3b8);
+  border: 1px solid transparent;
+}
+
+.spiderman-cta-button.ghost:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.spiderman-cta-button.cyan {
+  background: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(6, 182, 212, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spiderman-cta-button.cyan:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(6, 182, 212, 0.45);
+}
+
+.spiderman-cta-button.gold,
+.spiderman-cta-button.amber {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spiderman-cta-button.gold:hover,
+.spiderman-cta-button.amber:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(245, 158, 11, 0.45);
+}
+
+.spiderman-cta-button.emerald {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spiderman-cta-button.emerald:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(16, 185, 129, 0.45);
+}
+
+.spiderman-cta-button.danger {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1.5px solid rgba(239, 68, 68, 0.35);
+}
+
+.spiderman-cta-button.danger:hover {
+  background: rgba(239, 68, 68, 0.3);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Button pull animation */
+.spiderman-cta-button.is-web-pulled {
+  transform: scale(0.94) translate(4px, -3px);
+  box-shadow: 0 0 25px rgba(233, 69, 96, 0.6);
+  transition: transform 0.15s cubic-bezier(0.1, 0.9, 0.2, 1);
+}
+
+.spiderman-cta-button.is-released {
+  transform: scale(1.04);
+  transition: transform 0.2s var(--ease-bounce);
+}
+
+/* Web attach splat */
+.web-splat-decal {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+  z-index: 10;
+  animation: splatPop 0.25s var(--ease-bounce) forwards;
+}
+
+@keyframes splatPop {
+  0% { transform: scale(0); opacity: 0; }
+  70% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Spider-Man swing overlay */
+.spidey-swing-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.spidey-swing-actor {
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  transition: transform 0.4s var(--ease-bounce);
+  filter: drop-shadow(0 0 16px rgba(239, 68, 68, 0.7));
+}
+
+.spidey-halo-glow {
+  position: absolute;
+  inset: -15%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.75) 0%,
+    rgba(239, 68, 68, 0.45) 45%,
+    transparent 80%
+  );
+  filter: blur(10px);
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.spidey-swing-image {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6)) contrast(1.15) brightness(1.05);
+}
+
+.spidey-web-thread {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  width: 1.5px;
+  height: 30px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2));
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+/* Dynamic SVG web line */
+.spidey-web-line-svg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+.web-string-path {
+  stroke: rgba(255, 255, 255, 0.7);
+  stroke-width: 2;
+  stroke-linecap: round;
+  fill: none;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.5));
+  animation: webVibrate 0.1s infinite alternate;
+}
+
+@keyframes webVibrate {
+  0% { stroke-width: 2; }
+  100% { stroke-width: 2.5; }
+}

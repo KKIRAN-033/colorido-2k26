@@ -1,0 +1,251 @@
+/* COLORIDO 2K26 - REGISTRATION & CINEMATIC SUCCESS STYLING */
+
+.register-container {
+  max-width: 780px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.avenger-briefing-box {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 15px rgba(168, 85, 247, 0.15);
+}
+
+.avenger-briefing-content {
+  flex: 1;
+}
+
+.avenger-briefing-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #c084fc;
+  margin-bottom: 0.25rem;
+}
+
+.avenger-briefing-quote {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #f1f5f9;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* EVENT SELECTION GRID */
+.event-selection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  max-height: 440px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.event-radio-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: 1rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.6);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.event-radio-card:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.event-radio-card.selected {
+  background: rgba(233, 69, 96, 0.12);
+  border-color: #e94560;
+  box-shadow: 0 0 20px rgba(233, 69, 96, 0.3);
+}
+
+/* SUCCESS CELEBRATION UNIVERSE */
+.success-universe-overlay {
+  position: relative;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.hologram-pass-badge {
+  max-width: 580px;
+  margin: 2rem auto;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+  border: 2px solid rgba(236, 72, 153, 0.5);
+  border-radius: 2rem;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(236, 72, 153, 0.25);
+  text-align: left;
+}
+
+.hologram-pass-badge::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.pass-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.15);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.pass-festival-title {
+  font-size: 1.6rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #e94560, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.pass-id-display {
+  background: rgba(233, 69, 96, 0.15);
+  border: 1px solid rgba(233, 69, 96, 0.4);
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.75rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.pass-id-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.pass-id-code {
+  font-size: 1.8rem;
+  font-weight: 900;
+  font-family: monospace;
+  color: #38bdf8;
+  letter-spacing: 0.08em;
+}
+
+.pass-grid-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.pass-item-label {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.pass-item-value {
+  font-size: 0.95rem;
+  color: #ffffff;
+  font-weight: 600;
+  margin-top: 0.15rem;
+}
+
+.pass-barcode-graphic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 2px dashed rgba(255, 255, 255, 0.15);
+  padding-top: 1.25rem;
+}
+
+.barcode-lines {
+  display: flex;
+  gap: 3px;
+  height: 40px;
+  align-items: center;
+}
+
+.barcode-bar {
+  background: #ffffff;
+  height: 100%;
+}
+
+.free-pass-certified {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #10b981;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.5rem;
+}
+
+/* PRINT SPECIFICS */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .no-print, nav, footer, .char-universe-guide-dock {
+    display: none !important;
+  }
+  .hologram-pass-badge {
+    border: 2px solid #000000 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    color: #000000 !important;
+    max-width: 100% !important;
+  }
+  .pass-festival-title {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+  }
+  .pass-id-display {
+    border: 2px solid #000000 !important;
+    background: #f0f0f0 !important;
+  }
+  .pass-id-code {
+    color: #000000 !important;
+  }
+  .pass-item-value {
+    color: #000000 !important;
+  }
+  .barcode-bar {
+    background: #000000 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .event-selection-grid {
+    grid-template-columns: 1fr;
+  }
+  .pass-grid-info {
+    grid-template-columns: 1fr;
+  }
+  .hologram-pass-badge {
+    padding: 1.5rem;
+  }
+}

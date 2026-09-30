@@ -1,0 +1,253 @@
+.opening-cinematic-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: #030712;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+}
+
+.opening-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* SPEED LINES & VORTEX */
+.opening-vortex {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, rgba(225, 29, 72, 0.25) 0%, rgba(251, 191, 36, 0.12) 30%, transparent 70%);
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* IRON MAN FIGURE CONTAINER — SEAMLESS COMPOSITING */
+.ironman-flight-actor {
+  position: relative;
+  width: 340px;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+  z-index: 10;
+  will-change: transform, opacity, filter;
+  perspective: 800px;
+  filter: drop-shadow(0 0 45px rgba(225, 29, 72, 0.7)) drop-shadow(0 0 80px rgba(251, 191, 36, 0.4));
+}
+
+/* Luminous Stark energy halo directly behind character */
+.ironman-halo-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(254, 240, 138, 0.9) 25%,
+    rgba(245, 158, 11, 0.75) 50%,
+    rgba(225, 29, 72, 0.45) 70%,
+    transparent 88%
+  );
+  filter: blur(24px);
+  opacity: 0.95;
+  pointer-events: none;
+  z-index: 1;
+  animation: ironmanHaloPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes ironmanHaloPulse {
+  0% { transform: translate(-50%, -50%) scale(0.96); opacity: 0.88; }
+  100% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
+}
+
+.ironman-flight-image {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  mask-image: radial-gradient(
+    ellipse 44% 48% at 50% 50%,
+    black 42%,
+    rgba(0, 0, 0, 0.92) 62%,
+    rgba(0, 0, 0, 0.4) 82%,
+    transparent 96%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 44% 48% at 50% 50%,
+    black 42%,
+    rgba(0, 0, 0, 0.92) 62%,
+    rgba(0, 0, 0, 0.4) 82%,
+    transparent 96%
+  );
+  filter: contrast(1.1) brightness(1.02);
+}
+
+/* Arc Reactor glow centered on character chest area */
+.ironman-arc-reactor-glow {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.9) 0%, rgba(56, 189, 248, 0.3) 40%, transparent 70%);
+  animation: arcReactorPulse 1.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@keyframes arcReactorPulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+}
+
+/* Repulsor light streaks */
+.repulsor-streak {
+  position: absolute;
+  width: 4px;
+  height: 60px;
+  background: linear-gradient(to bottom, #38bdf8 0%, rgba(56, 189, 248, 0.4) 60%, transparent 100%);
+  border-radius: 999px;
+  filter: blur(2px);
+  opacity: 0.7;
+  animation: repulsorFlicker 0.15s infinite alternate;
+  pointer-events: none;
+}
+
+.repulsor-streak-left { bottom: 20px; left: 28%; }
+.repulsor-streak-right { bottom: 20px; right: 28%; }
+
+@keyframes repulsorFlicker {
+  0% { opacity: 0.5; height: 50px; }
+  100% { opacity: 0.9; height: 70px; }
+}
+
+.thruster-plume-left,
+.thruster-plume-right {
+  position: absolute;
+  bottom: 0;
+  width: 32px;
+  height: 80px;
+  background: linear-gradient(to bottom, #38bdf8 0%, #fbbf24 40%, transparent 100%);
+  border-radius: 50%;
+  filter: blur(6px);
+  animation: thrusterFlicker 0.08s infinite alternate;
+  pointer-events: none;
+}
+
+.thruster-plume-left { left: 30%; }
+.thruster-plume-right { right: 30%; }
+
+@keyframes thrusterFlicker {
+  0% { transform: scaleY(0.9) scaleX(0.95); opacity: 0.85; }
+  100% { transform: scaleY(1.2) scaleX(1.05); opacity: 1; }
+}
+
+/* CINEMATIC LOGO REVEAL */
+.opening-logo-container {
+  position: absolute;
+  text-align: center;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+.opening-main-title {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 950;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  background: linear-gradient(135deg, #ffffff 0%, #fbbf24 35%, #e11d48 70%, #991b1b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 35px rgba(225, 29, 72, 0.8));
+  margin-bottom: 0.5rem;
+}
+
+.opening-tagline {
+  font-size: clamp(0.9rem, 2vw, 1.4rem);
+  font-weight: 800;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #38bdf8;
+  text-shadow: 0 0 15px rgba(56, 189, 248, 0.8);
+}
+
+.opening-shockwave-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.1);
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  border: 4px solid #fbbf24;
+  box-shadow: 0 0 50px #e11d48, inset 0 0 40px #38bdf8;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* SKIP INTRO BUTTON */
+.opening-skip-btn {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  z-index: 30;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: all 0.25s ease;
+}
+
+.opening-skip-btn:hover {
+  background: rgba(225, 29, 72, 0.8);
+  border-color: #e11d48;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ironman-flight-actor {
+    width: 240px;
+    height: 300px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ironman-arc-reactor-glow,
+  .thruster-plume-left,
+  .thruster-plume-right,
+  .repulsor-streak {
+    animation: none;
+  }
+}

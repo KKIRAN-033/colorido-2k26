@@ -1,0 +1,131 @@
+/* ═══════════════════════════════════════════════════════════
+   FOOTER — MINIMAL CINEMATIC FOOTER
+   ═══════════════════════════════════════════════════════════ */
+
+.footer {
+  position: relative;
+  background: #050510;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 3rem 0 1.5rem;
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.footer-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.footer-brand {
+  max-width: 300px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--ff-heading);
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  text-decoration: none;
+}
+
+.footer-logo svg {
+  color: var(--clr-primary);
+}
+
+.footer-logo-year {
+  font-family: var(--ff-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.12rem 0.4rem;
+  border: 1px solid rgba(233, 69, 96, 0.3);
+  border-radius: var(--radius-full);
+  color: var(--clr-primary);
+}
+
+.footer-tagline {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.footer-links-group {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.footer-links-col h4 {
+  font-family: var(--ff-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.75rem;
+}
+
+.footer-links-col a {
+  display: block;
+  padding: 0.25rem 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.3);
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.footer-links-col a:hover {
+  color: var(--clr-primary);
+}
+
+.footer-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.04);
+  margin-bottom: 1.25rem;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-copyright {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.footer-made-with {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 768px) {
+  .footer-top {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer-links-group {
+    gap: 2rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}

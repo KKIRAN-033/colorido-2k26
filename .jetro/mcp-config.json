@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "jetro": {
+      "command": "C:\\Users\\kk149\\.jetro\\runtime\\node-win32-x64.exe",
+      "args": [
+        "C:\\Users\\kk149\\.jetro\\mcp-server\\index.js"
+      ],
+      "env": {
+        "JET_WORKSPACE": "c:\\Users\\kk149\\.gemini\\antigravity-ide\\scratch\\colorido-2k26",
+        "JET_API_URL": "https://api.jetro.ai",
+        "PATH": "C:\\Users\\kk149\\.jetro\\runtime;C:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\nodejs\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\cursor\\resources\\app\\bin;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\Users\\kk149\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\kk149\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Program Files\\Java\\jdk-21\\bin;C:\\Users\\kk149\\AppData\\Roaming\\npm;;C:\\Users\\kk149\\AppData\\Local\\Programs\\Ollama;C:\\Users\\kk149\\AppData\\Local\\Programs\\Antigravity IDE\\bin"
+      }
+    }
+  }
+}

@@ -1,0 +1,148 @@
+.char-universe-guide-dock {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.char-universe-guide-dock > * {
+  pointer-events: auto;
+}
+
+/* SPEECH BUBBLE */
+.char-speech-bubble {
+  position: relative;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  backdrop-filter: blur(16px);
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+  max-width: 320px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(168, 85, 247, 0.2);
+  margin-bottom: 0.75rem;
+  transform-origin: bottom right;
+}
+
+.char-speech-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.char-name-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(168, 85, 247, 0.2);
+  color: #c084fc;
+}
+
+.char-bubble-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.char-bubble-close:hover {
+  color: #ffffff;
+}
+
+.char-speech-text {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.char-speech-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.char-speech-action-btn {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.char-speech-action-btn:hover {
+  background: rgba(168, 85, 247, 0.4);
+  border-color: #a855f7;
+}
+
+/* POINTER ARROW */
+.char-speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 28px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid rgba(15, 23, 42, 0.95);
+}
+
+/* GUIDE AVATAR BUTTON */
+.char-guide-trigger {
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.char-guide-badge-pill {
+  position: absolute;
+  top: -8px;
+  left: -20px;
+  background: #e94560;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  box-shadow: 0 0 10px rgba(233, 69, 96, 0.8);
+  animation: bouncePill 2s infinite ease-in-out;
+}
+
+@keyframes bouncePill {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@media (max-width: 640px) {
+  .char-universe-guide-dock {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  .char-speech-bubble {
+    max-width: 260px;
+    padding: 0.75rem 1rem;
+  }
+}

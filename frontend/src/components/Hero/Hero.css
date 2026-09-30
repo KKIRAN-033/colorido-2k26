@@ -1,0 +1,560 @@
+/* ═══════════════════════════════════════════════════════════
+   HERO — CINEMATIC 3D ATMOSPHERIC EXPERIENCE
+   Inspired by Smooth-Scroll 3D Animated Showcase
+   ═══════════════════════════════════════════════════════════ */
+
+.hero {
+  position: relative;
+  min-height: 720px;
+  max-height: 940px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #04050d;
+  perspective: 1200px;
+}
+
+/* ── Deep cosmic background ───────────────────────────── */
+.hero-bg-deep {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: 
+    radial-gradient(circle at 50% 20%, #0d122b 0%, #060814 60%, #030408 100%);
+}
+
+.hero-bg-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(139, 92, 246, 0.18), transparent 75%),
+    radial-gradient(ellipse 50% 40% at 85% 65%, rgba(236, 72, 153, 0.14), transparent 70%),
+    radial-gradient(ellipse 45% 45% at 15% 75%, rgba(6, 182, 212, 0.12), transparent 70%);
+  animation: heroGradientShift 14s ease-in-out infinite alternate;
+}
+
+@keyframes heroGradientShift {
+  0% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 0.85; transform: scale(1); }
+}
+
+/* ── Volumetric Light Rays (from top-left / center) ──── */
+.hero-light-rays {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-ray {
+  position: absolute;
+  top: -20%;
+  transform-origin: top center;
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.hero-ray-1 {
+  left: 20%;
+  width: 280px;
+  height: 120vh;
+  background: linear-gradient(135deg, rgba(255, 230, 160, 0.08) 0%, rgba(139, 92, 246, 0.05) 50%, transparent 80%);
+  transform: rotate(28deg);
+  animation: raySweep1 16s ease-in-out infinite alternate;
+}
+
+.hero-ray-2 {
+  left: 55%;
+  width: 320px;
+  height: 130vh;
+  background: linear-gradient(145deg, rgba(56, 189, 248, 0.07) 0%, rgba(236, 72, 153, 0.04) 45%, transparent 75%);
+  transform: rotate(-15deg);
+  animation: raySweep2 20s ease-in-out infinite alternate;
+}
+
+.hero-ray-3 {
+  left: 35%;
+  width: 220px;
+  height: 110vh;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  transform: rotate(5deg);
+  animation: raySweep3 12s ease-in-out infinite alternate;
+}
+
+@keyframes raySweep1 {
+  0% { transform: rotate(24deg) translateY(-20px); opacity: 0.6; }
+  100% { transform: rotate(32deg) translateY(20px); opacity: 0.9; }
+}
+
+@keyframes raySweep2 {
+  0% { transform: rotate(-18deg); opacity: 0.5; }
+  100% { transform: rotate(-12deg); opacity: 0.85; }
+}
+
+@keyframes raySweep3 {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.75; }
+}
+
+/* ── Noise texture overlay ────────────────────────────── */
+.hero-noise {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ── Canvas Particles ─────────────────────────────────── */
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ── Ambient Glowing Orbs ─────────────────────────────── */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 5;
+  pointer-events: none;
+  filter: blur(90px);
+}
+
+.hero-orb-1 {
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(233, 69, 96, 0.22), transparent 70%);
+  top: -10%;
+  right: -5%;
+}
+
+.hero-orb-2 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.18), transparent 70%);
+  bottom: -15%;
+  left: -8%;
+}
+
+.hero-orb-3 {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.16), transparent 70%);
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ── 3D Celestial Portal Rings (Background Depth) ────── */
+.hero-portal-stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 720px;
+  height: 720px;
+  margin-top: -360px;
+  margin-left: -360px;
+  z-index: 6;
+  pointer-events: none;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.portal-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid;
+}
+
+.portal-ring-outer {
+  width: 680px;
+  height: 680px;
+  border-color: rgba(139, 92, 246, 0.12);
+  border-style: dashed;
+  animation: portalSpinSlow 60s linear infinite;
+}
+
+.portal-ring-middle {
+  width: 520px;
+  height: 520px;
+  border-color: rgba(233, 69, 96, 0.15);
+  animation: portalSpinReverse 40s linear infinite;
+}
+
+.portal-ring-inner {
+  width: 380px;
+  height: 380px;
+  border-color: rgba(56, 189, 248, 0.2);
+  animation: portalSpinSlow 25s linear infinite;
+}
+
+.portal-core-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(233, 69, 96, 0.15) 0%, rgba(139, 92, 246, 0.08) 50%, transparent 75%);
+  filter: blur(40px);
+  animation: portalPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes portalSpinSlow {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes portalSpinReverse {
+  from { transform: translate(-50%, -50%) rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+@keyframes portalPulse {
+  0% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.92); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+}
+
+/* ── Hero Foreground Content ──────────────────────────── */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 5rem 1.5rem 2rem;
+  max-width: 980px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+/* Pre-title badge */
+.hero-pretitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: var(--ff-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 1.25rem;
+  padding: 0.45rem 1.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hero-sparkle-icon {
+  color: var(--clr-primary);
+  animation: sparkleTwinkle 2s ease-in-out infinite alternate;
+}
+
+@keyframes sparkleTwinkle {
+  0% { transform: scale(0.85); opacity: 0.7; }
+  100% { transform: scale(1.15); opacity: 1; }
+}
+
+.hero-bullet {
+  opacity: 0.25;
+}
+
+.hero-pretitle .free-badge {
+  color: #34d399;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 700;
+}
+
+/* Main title — Grand, majestic, cinematic */
+.hero-title {
+  font-family: var(--ff-heading);
+  font-size: clamp(4.5rem, 13vw, 10.5rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.025em;
+  margin-bottom: 0.4rem;
+  position: relative;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.hero-title-color {
+  display: inline;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f8fafc 35%,
+    rgba(255, 255, 255, 0.8) 70%,
+    rgba(233, 69, 96, 0.6) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-title-ido {
+  display: inline;
+  background: linear-gradient(
+    135deg,
+    #e94560 0%,
+    #ff6b81 30%,
+    #a855f7 70%,
+    #38bdf8 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+/* Year Badge */
+.hero-year-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0 1.25rem;
+}
+
+.hero-year-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 1.6rem;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, rgba(233, 69, 96, 0.12) 0%, rgba(139, 92, 246, 0.08) 100%);
+  border: 1px solid rgba(233, 69, 96, 0.35);
+  box-shadow: 0 0 25px rgba(233, 69, 96, 0.18), inset 0 0 15px rgba(233, 69, 96, 0.08);
+}
+
+.hero-year-text {
+  font-family: var(--ff-mono);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #ffffff;
+}
+
+.hero-year-sub {
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: var(--clr-primary-light);
+  font-weight: 700;
+  padding-left: 0.5rem;
+  border-left: 1px solid rgba(233, 69, 96, 0.35);
+}
+
+/* Tagline */
+.hero-tagline {
+  font-family: var(--ff-heading);
+  font-size: clamp(0.85rem, 1.8vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: rgba(255, 255, 255, 0.45);
+  margin: 0.5rem 0 2rem;
+  text-transform: uppercase;
+}
+
+.hero-tagline-sep {
+  color: var(--clr-primary);
+  margin: 0 0.35em;
+  opacity: 0.8;
+}
+
+/* ── Countdown Timer ──────────────────────────────────── */
+.hero-countdown {
+  display: inline-flex;
+  gap: 0.75rem;
+  background: rgba(12, 16, 32, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.85rem 1.85rem;
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(20px);
+  margin-bottom: 2.25rem;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+}
+
+.hero-countdown-item {
+  text-align: center;
+  min-width: 58px;
+  padding: 0 0.4rem;
+}
+
+.hero-countdown-item:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.hero-countdown-val {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #ffffff;
+  font-family: var(--ff-mono);
+  line-height: 1.15;
+  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-countdown-label {
+  font-size: 0.56rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+/* ── CTA Buttons ──────────────────────────────────────── */
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ── Scroll Indicator ─────────────────────────────────── */
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(to bottom, var(--clr-primary), transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-scroll-line::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  background: var(--clr-primary-light);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--clr-primary);
+  animation: scrollPulse 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes scrollPulse {
+  0% { top: -10px; opacity: 0; }
+  35% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.hero-scroll span {
+  color: rgba(255, 255, 255, 0.28);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-family: var(--ff-mono);
+}
+
+/* ── Bottom Gradient Fade ─────────────────────────────── */
+.hero-bottom-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(to bottom, transparent, #04050d);
+  z-index: 8;
+  pointer-events: none;
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-pretitle {
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    padding: 0.35rem 0.9rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-year-badge {
+    padding: 0.3rem 1.2rem;
+  }
+
+  .hero-year-text {
+    font-size: 1.1rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+  }
+
+  .hero-countdown {
+    gap: 0.35rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .hero-countdown-item {
+    min-width: 44px;
+  }
+
+  .hero-countdown-val {
+    font-size: 1.35rem;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .hero-portal-stage {
+    display: none;
+  }
+}
+
+/* Cinematic Intro replay button in Hero */
+.hero-replay-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(234, 179, 8, 0.15);
+  border: 1px solid rgba(234, 179, 8, 0.38);
+  color: #fef08a;
+  padding: 0.22rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hero-replay-btn:hover {
+  background: rgba(234, 179, 8, 0.32);
+  border-color: #fde047;
+  transform: scale(1.05);
+}
+
+

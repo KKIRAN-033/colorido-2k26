@@ -1,0 +1,510 @@
+/* ═══════════════════════════════════════════════════════════
+   CHARACTER SHOWCASE — 3D IMMERSIVE EVENT AMBASSADOR CARDS
+   Inspired by Smooth-Scroll 3D Animated Showcase
+   ═══════════════════════════════════════════════════════════ */
+
+.character-showcase-section {
+  position: relative;
+  padding: 7rem 0 6rem;
+  background: #04050d;
+  overflow: hidden;
+}
+
+.showcase-ambient-glow {
+  position: absolute;
+  top: 15%;
+  right: 5%;
+  width: 650px;
+  height: 650px;
+  filter: blur(100px);
+  pointer-events: none;
+  opacity: 0.35;
+  transition: background 0.8s ease;
+  z-index: 1;
+}
+
+.character-showcase-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 3;
+}
+
+/* ── Section Header ───────────────────────────────────── */
+.character-showcase-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.character-showcase-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--clr-primary);
+  background: rgba(233, 69, 96, 0.08);
+  border: 1px solid rgba(233, 69, 96, 0.2);
+  margin-bottom: 1.25rem;
+  box-shadow: 0 0 20px rgba(233, 69, 96, 0.1);
+}
+
+.character-showcase-title {
+  font-family: var(--ff-heading);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.75rem;
+  line-height: 1.15;
+}
+
+.character-showcase-desc {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 1.05rem;
+  max-width: 650px;
+  margin: 0 auto 2.25rem;
+  line-height: 1.6;
+}
+
+/* ── Filter Tabs ──────────────────────────────────────── */
+.character-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.character-tab-btn {
+  padding: 0.6rem 1.6rem;
+  border-radius: var(--radius-full);
+  font-family: var(--ff-heading);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.character-tab-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.character-tab-btn.active {
+  color: #ffffff;
+  background: rgba(233, 69, 96, 0.16);
+  border-color: rgba(233, 69, 96, 0.4);
+  box-shadow: 0 0 25px rgba(233, 69, 96, 0.15);
+}
+
+/* ── 3D Spotlight Panel ───────────────────────────────── */
+.character-spotlight {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 3.5rem;
+  background: linear-gradient(145deg, rgba(16, 20, 38, 0.75) 0%, rgba(8, 10, 20, 0.85) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-xl);
+  padding: 3rem;
+  backdrop-filter: blur(24px);
+  margin-bottom: 3.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+.character-spotlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--spotlight-theme, var(--clr-primary)), transparent);
+  opacity: 0.6;
+}
+
+/* Left Column: Information */
+.character-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 2;
+}
+
+.spotlight-top-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.spotlight-arena-badge {
+  font-family: var(--ff-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--spotlight-theme, #38bdf8);
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spotlight-free-tag {
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #34d399;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  background: rgba(52, 211, 153, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.2);
+}
+
+.spotlight-event-heading {
+  font-family: var(--ff-heading);
+  font-size: clamp(2rem, 3.8vw, 2.85rem);
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+.spotlight-ambassador-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+
+.spotlight-dash {
+  opacity: 0.4;
+}
+
+.spotlight-quote {
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.65);
+  border-left: 3px solid;
+  padding-left: 1.25rem;
+  margin: 0.25rem 0;
+  line-height: 1.6;
+}
+
+.spotlight-desc-block {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+}
+
+.spotlight-block-title {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.5rem;
+}
+
+.spotlight-event-desc {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.spotlight-rules-block {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+}
+
+.spotlight-rules-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 0.4rem;
+}
+
+.spotlight-rules-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.spotlight-rules-list svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.spotlight-schedule-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-lg);
+  background: rgba(56, 189, 248, 0.06);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  color: #e2e8f0;
+  font-size: 0.86rem;
+}
+
+.spotlight-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.spotlight-details-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+.spotlight-details-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateX(4px);
+}
+
+/* Right Column: 3D Holographic Stage */
+.character-visual-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hologram-stage-podium {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hologram-stage-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid;
+  pointer-events: none;
+}
+
+.hologram-stage-ring.ring-outer {
+  inset: -15px;
+  border-style: dashed;
+  animation: stageRingSpin 30s linear infinite;
+}
+
+.hologram-stage-ring.ring-inner {
+  inset: -5px;
+  animation: stageRingSpinReverse 20s linear infinite;
+}
+
+@keyframes stageRingSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes stageRingSpinReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.hologram-aura-glow {
+  position: absolute;
+  inset: -25px;
+  border-radius: 50%;
+  filter: blur(35px);
+  opacity: 0.45;
+  pointer-events: none;
+  animation: auraGlowPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes auraGlowPulse {
+  0% { transform: scale(0.9); opacity: 0.3; }
+  100% { transform: scale(1.1); opacity: 0.55; }
+}
+
+.hologram-avatar-wrapper {
+  position: relative;
+  z-index: 3;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
+}
+
+.hologram-pedestal-light {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 50px;
+  border-radius: 50%;
+  filter: blur(15px);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.hologram-id-card {
+  margin-top: 1.75rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.65rem 1.75rem;
+  border-radius: var(--radius-full);
+}
+
+.hologram-id-name {
+  font-family: var(--ff-heading);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #ffffff;
+}
+
+.hologram-id-role {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Roster Grid ──────────────────────────────────────── */
+.character-roster-header {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.character-roster-header span {
+  font-family: var(--ff-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.character-roster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+  gap: 0.85rem;
+}
+
+.roster-card {
+  background: rgba(16, 20, 35, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg);
+  padding: 1rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.roster-card:hover {
+  background: rgba(25, 30, 50, 0.7);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.roster-card.active {
+  background: rgba(25, 30, 55, 0.9);
+}
+
+.roster-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.roster-card-name {
+  font-family: var(--ff-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.roster-card-event {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 992px) {
+  .character-spotlight {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 2rem;
+  }
+
+  .character-visual-col {
+    order: -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .character-roster-grid {
+    grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .roster-card {
+    padding: 0.75rem 0.4rem;
+  }
+
+  .spotlight-event-heading {
+    font-size: 1.85rem;
+  }
+
+  .spotlight-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

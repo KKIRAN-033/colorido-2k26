@@ -1,0 +1,232 @@
+/* ═══════════════════════════════════════════════════════════
+   EVENT CARD — PREMIUM GLASSMORPHISM CARDS
+   ═══════════════════════════════════════════════════════════ */
+
+.event-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(18, 22, 42, 0.75) 0%, rgba(10, 12, 24, 0.85) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.event-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--card-theme, rgba(255, 255, 255, 0.1)), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px var(--card-glow, rgba(233, 69, 96, 0.1));
+}
+
+.event-card:hover::before {
+  opacity: 0.5;
+}
+
+/* TOP FEATURED AVENGER STRIP */
+.event-avenger-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.avenger-badge-peek {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.avenger-label-micro {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 2px;
+}
+
+.avenger-name-small {
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+.avenger-power-small {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.3);
+  display: block;
+}
+
+.event-card-number-badge {
+  font-family: var(--ff-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* TITLE & INFO */
+.event-card-title {
+  font-family: var(--ff-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 0.4rem;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.event-card-subhead {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.event-pill {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.04em;
+}
+
+.event-pill-cultural {
+  background: rgba(236, 72, 153, 0.1);
+  color: #f472b6;
+  border: 1px solid rgba(236, 72, 153, 0.2);
+}
+
+.event-pill-sports {
+  background: rgba(6, 182, 212, 0.1);
+  color: #38bdf8;
+  border: 1px solid rgba(6, 182, 212, 0.2);
+}
+
+.event-pill-gender,
+.event-pill-division {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.free-tag {
+  color: #10b981;
+  font-size: 0.68rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.reg-status-pill {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.03em;
+}
+
+.reg-status-pill.reg-open {
+  background: rgba(16, 185, 129, 0.1);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.reg-status-pill.reg-closed {
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.event-card-desc {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+/* METADATA BAR */
+.event-card-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0.6rem 0.85rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  font-size: 0.78rem;
+}
+
+.event-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.event-stat-link {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 600;
+}
+
+.event-stat-link:hover {
+  color: #38bdf8;
+}
+
+/* FOOTER BUTTONS */
+.event-card-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.event-details-link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.3s ease;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+}
+
+.event-details-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
